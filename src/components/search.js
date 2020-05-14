@@ -34,7 +34,7 @@ export function Search(props) {
     }
 
     return (
-        <div className='justify-content-center'>
+        <div className='justify-content-center mt-3'>
             <Formik
                 initialValues={{ search: '' }}
                 validate={values => {
