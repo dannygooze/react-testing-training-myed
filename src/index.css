@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.zoom {
+  animation-name: zoom;
+  animation: load 2s;
+}
+
+@keyframes load {
+  50%{
+    transform: scale(0.55)
+  }
+}
