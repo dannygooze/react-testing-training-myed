@@ -1,14 +1,15 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { usePokemonState } from '../context'
+import { usePokemonDispatch } from '../context'
 import axios from 'axios'
 
 export function Search(props) {
-    const { dispatch } = usePokemonState()
+    const dispatch = usePokemonDispatch()
 
     const getPokemon = async (searchTerm) => {
         try {
             let resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchTerm.toLowerCase()}/`)
+
             dispatch({ type: 'SET_POKEMON', payload: resp.data })
             getPokemonFlavorText(resp.data.id)
         } catch(err) {
@@ -25,7 +26,6 @@ export function Search(props) {
             let pokeTextArr = resp.data.flavor_text_entries.filter((lang) => {
                 return lang.language.name === 'en'
             })
-
             dispatch({ type: 'SET_FLAVOR_TEXT', payload: pokeTextArr[0].flavor_text })
         } catch(err) {
             console.error(err)

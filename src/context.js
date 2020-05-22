@@ -1,6 +1,7 @@
 import React from 'react'
 
-const PokemonContext = React.createContext()
+const PokemonStateContext = React.createContext()
+const PokemonDispatchContext = React.createContext()
 
 const initialState = {
     pokemon: {},
@@ -29,18 +30,28 @@ function PokemonProvider({children}) {
     const [state, dispatch] = React.useReducer(reducer, initialState)
 
     return (
-        <PokemonContext.Provider value={{state, dispatch}}>
-            {children}
-        </PokemonContext.Provider>
+        <PokemonStateContext.Provider value={state}>
+            <PokemonDispatchContext.Provider value={dispatch}>
+                {children}
+            </PokemonDispatchContext.Provider>
+        </PokemonStateContext.Provider>
     )
 }
 
 function usePokemonState() {
-    const context = React.useContext(PokemonContext)
+    const context = React.useContext(PokemonStateContext)
     if (context === undefined) {
-        throw new Error('useCountState must be used within a CountProvider')
+        throw new Error('usePokemonState must be used within a PokemonProvider')
     }
     return context
 }
 
-export{PokemonProvider, usePokemonState}
+function usePokemonDispatch() {
+    const context = React.useContext(PokemonDispatchContext)
+    if (context === undefined) {
+        throw new Error('usePokemonDispatch must be used within a PokemonProvider')
+    }
+    return context
+}
+
+export { PokemonProvider, usePokemonState, usePokemonDispatch }
