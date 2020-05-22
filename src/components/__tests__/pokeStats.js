@@ -7,6 +7,7 @@ describe('Test PokeStats component functions and renders as expected', () => {
     test('Component renders table headers and name columns', () => {
         const { getByText } = render(<PokeStats pokemon={POKE_DATA_ONE} />)
 
+        //Here I am using two different methods from expect, here are more that are available: https://jestjs.io/docs/en/expect
         expect(getByText(/^Stats/)).toBeTruthy()
         expect(getByText('Name')).toBeTruthy()
         expect(getByText('Speed')).toBeTruthy()

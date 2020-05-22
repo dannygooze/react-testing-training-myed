@@ -5,5 +5,5 @@ import { NotFound } from '../notFound'
 test('Test NotFound component renders', () => {
     const { getByText } = render(<NotFound />)
 
-    expect(getByText(/Data was not found in Pokédex/))
+    expect(getByText('Data was not found in Pokédex'))
 })

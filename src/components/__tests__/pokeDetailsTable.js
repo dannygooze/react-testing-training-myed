@@ -9,8 +9,10 @@ describe('Test PokeDetailsTable copmonent renders with appropriate props and ima
     test('Pokemon name renders capitalized and description renders', () => {
         const { getByText } = render(<PokeDetailTable pokemon={POKE_DATA_ONE} description={POKE_DESC} />)
 
-        expect(getByText('Bulbasaur'))
-        expect(getByText(POKE_DESC))
+        //Here I use toBeTruthy to assert this exists and returns something
+        //I want to be sure I am actually validating something than just querying
+        expect(getByText('Bulbasaur')).toBeTruthy()
+        expect(getByText(POKE_DESC)).toBeTruthy()
     })
 
     test('Format pokeId function works with single digit ID', () => {
